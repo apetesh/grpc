@@ -19,11 +19,11 @@ func main() {
 	}
 	defer conn.Close()
 	phonebookClient := api.NewPhonebookClient(conn)
-	id, err := phonebookClient.AddContact(context.Background(), &api.AddContactRequest{Name: "asaf petesh", PhoneNumber: "1700707070"})
+	resp, err := phonebookClient.AddContact(context.Background(), &api.AddContactRequest{Name: "asaf petesh", PhoneNumber: "1700707070"})
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("new contact id: %d\n", id)
+	fmt.Printf("new contact id: %d\n", resp.Id)
 
 	contact, err := phonebookClient.GetContactByID(context.Background(), &api.GetContactRequest{Id: 0})
 	if err != nil {
