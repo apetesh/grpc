@@ -1,0 +1,40 @@
+syntax = "proto3";
+package phonebook;
+service phonebook {
+  rpc GetContactByID(GetContactRequest) returns (GetContactResponse) {}
+  rpc AddContact(AddContactRequest) returns (AddContactResponse) {}
+  rpc DeleteContact(DeleteContactRequest) returns (DeleteContactResponse) {}
+  rpc AddContacts(stream AddContactRequest) returns ( AddContactsResponse) {}
+}
+
+message GetContactRequest {
+  int32 id = 1;
+}
+
+message GetContactResponse {
+  string name = 1;
+  string phoneNumber = 2;
+}
+
+message AddContactRequest {
+  string name = 1;
+  string phoneNumber = 2;
+}
+
+message AddContactResponse {
+  int32 id = 1;
+  string name = 2;
+  string phoneNumber = 3;
+}
+
+message AddContactsResponse {
+  repeated int32 ids = 1;
+}
+
+message DeleteContactRequest {
+  int32 id = 1;
+}
+
+message DeleteContactResponse {
+  int32 id = 1;
+}
