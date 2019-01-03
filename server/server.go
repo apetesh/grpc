@@ -48,6 +48,18 @@ func (s *Server) AddContact(ctx context.Context, contact *api.AddContactRequest)
 	return &api.AddContactResponse{Id: id}, nil
 }
 
+func (s *Server) ListContacts(ctx context.Context, id *api.ListContactsRequest) (*api.ListContactsResponse, error) {
+	contacts := s.phonebook.ListContacts()
+	if len(contacts) == 0 {
+		return &api.ListContactsResponse{}, nil
+	}
+	apiContacts := make([]*api.ListContactsResponse_SingleContact, len(contacts))
+	for i, contact := range contacts {
+		apiContacts[i] = &api.ListContactsResponse_SingleContact{Name: contact.name, PhoneNumber: contact.phoneNumber}
+	}
+	return &api.ListContactsResponse{Contacts: apiContacts}, nil
+}
+
 func (s *Server) GetContactByID(ctx context.Context, id *api.GetContactRequest) (*api.GetContactResponse, error) {
 	contact := s.phonebook.GetContact(id.Id)
 	if contact == nil {
@@ -68,7 +80,6 @@ func (s *Server) AddContacts(stream api.Phonebook_AddContactsServer) error {
 	ids := make([]int32, 0)
 	for {
 		contact, err := stream.Recv()
-		log.Println("Received value")
 		if err == io.EOF {
 			stream.SendAndClose(&api.AddContactsResponse{Ids: ids})
 			return nil
@@ -79,5 +90,6 @@ func (s *Server) AddContacts(stream api.Phonebook_AddContactsServer) error {
 		newContact := &Contact{name: contact.Name, phoneNumber: contact.PhoneNumber}
 		id := s.phonebook.AddContact(newContact)
 		ids = append(ids, id)
+		fmt.Printf("New Contact: %+v\n", newContact)
 	}
 }

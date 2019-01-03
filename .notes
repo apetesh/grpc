@@ -1,0 +1,2 @@
+grpc_cli ls 127.0.0.1:8000 phonebook.phonebook
+protoc --go_out=plugins=grpc:. *.proto

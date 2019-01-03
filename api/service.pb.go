@@ -22,6 +22,123 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type ListContactsRequest struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ListContactsRequest) Reset()         { *m = ListContactsRequest{} }
+func (m *ListContactsRequest) String() string { return proto.CompactTextString(m) }
+func (*ListContactsRequest) ProtoMessage()    {}
+func (*ListContactsRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a0b84a42fa06f626, []int{0}
+}
+
+func (m *ListContactsRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListContactsRequest.Unmarshal(m, b)
+}
+func (m *ListContactsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListContactsRequest.Marshal(b, m, deterministic)
+}
+func (m *ListContactsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListContactsRequest.Merge(m, src)
+}
+func (m *ListContactsRequest) XXX_Size() int {
+	return xxx_messageInfo_ListContactsRequest.Size(m)
+}
+func (m *ListContactsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListContactsRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListContactsRequest proto.InternalMessageInfo
+
+type ListContactsResponse struct {
+	Contacts             []*ListContactsResponse_SingleContact `protobuf:"bytes,1,rep,name=contacts,proto3" json:"contacts,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                              `json:"-"`
+	XXX_unrecognized     []byte                                `json:"-"`
+	XXX_sizecache        int32                                 `json:"-"`
+}
+
+func (m *ListContactsResponse) Reset()         { *m = ListContactsResponse{} }
+func (m *ListContactsResponse) String() string { return proto.CompactTextString(m) }
+func (*ListContactsResponse) ProtoMessage()    {}
+func (*ListContactsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a0b84a42fa06f626, []int{1}
+}
+
+func (m *ListContactsResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListContactsResponse.Unmarshal(m, b)
+}
+func (m *ListContactsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListContactsResponse.Marshal(b, m, deterministic)
+}
+func (m *ListContactsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListContactsResponse.Merge(m, src)
+}
+func (m *ListContactsResponse) XXX_Size() int {
+	return xxx_messageInfo_ListContactsResponse.Size(m)
+}
+func (m *ListContactsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListContactsResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListContactsResponse proto.InternalMessageInfo
+
+func (m *ListContactsResponse) GetContacts() []*ListContactsResponse_SingleContact {
+	if m != nil {
+		return m.Contacts
+	}
+	return nil
+}
+
+type ListContactsResponse_SingleContact struct {
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	PhoneNumber          string   `protobuf:"bytes,2,opt,name=phoneNumber,proto3" json:"phoneNumber,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ListContactsResponse_SingleContact) Reset()         { *m = ListContactsResponse_SingleContact{} }
+func (m *ListContactsResponse_SingleContact) String() string { return proto.CompactTextString(m) }
+func (*ListContactsResponse_SingleContact) ProtoMessage()    {}
+func (*ListContactsResponse_SingleContact) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a0b84a42fa06f626, []int{1, 0}
+}
+
+func (m *ListContactsResponse_SingleContact) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListContactsResponse_SingleContact.Unmarshal(m, b)
+}
+func (m *ListContactsResponse_SingleContact) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListContactsResponse_SingleContact.Marshal(b, m, deterministic)
+}
+func (m *ListContactsResponse_SingleContact) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListContactsResponse_SingleContact.Merge(m, src)
+}
+func (m *ListContactsResponse_SingleContact) XXX_Size() int {
+	return xxx_messageInfo_ListContactsResponse_SingleContact.Size(m)
+}
+func (m *ListContactsResponse_SingleContact) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListContactsResponse_SingleContact.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListContactsResponse_SingleContact proto.InternalMessageInfo
+
+func (m *ListContactsResponse_SingleContact) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *ListContactsResponse_SingleContact) GetPhoneNumber() string {
+	if m != nil {
+		return m.PhoneNumber
+	}
+	return ""
+}
+
 type GetContactRequest struct {
 	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -33,7 +150,7 @@ func (m *GetContactRequest) Reset()         { *m = GetContactRequest{} }
 func (m *GetContactRequest) String() string { return proto.CompactTextString(m) }
 func (*GetContactRequest) ProtoMessage()    {}
 func (*GetContactRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a0b84a42fa06f626, []int{0}
+	return fileDescriptor_a0b84a42fa06f626, []int{2}
 }
 
 func (m *GetContactRequest) XXX_Unmarshal(b []byte) error {
@@ -73,7 +190,7 @@ func (m *GetContactResponse) Reset()         { *m = GetContactResponse{} }
 func (m *GetContactResponse) String() string { return proto.CompactTextString(m) }
 func (*GetContactResponse) ProtoMessage()    {}
 func (*GetContactResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a0b84a42fa06f626, []int{1}
+	return fileDescriptor_a0b84a42fa06f626, []int{3}
 }
 
 func (m *GetContactResponse) XXX_Unmarshal(b []byte) error {
@@ -120,7 +237,7 @@ func (m *AddContactRequest) Reset()         { *m = AddContactRequest{} }
 func (m *AddContactRequest) String() string { return proto.CompactTextString(m) }
 func (*AddContactRequest) ProtoMessage()    {}
 func (*AddContactRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a0b84a42fa06f626, []int{2}
+	return fileDescriptor_a0b84a42fa06f626, []int{4}
 }
 
 func (m *AddContactRequest) XXX_Unmarshal(b []byte) error {
@@ -168,7 +285,7 @@ func (m *AddContactResponse) Reset()         { *m = AddContactResponse{} }
 func (m *AddContactResponse) String() string { return proto.CompactTextString(m) }
 func (*AddContactResponse) ProtoMessage()    {}
 func (*AddContactResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a0b84a42fa06f626, []int{3}
+	return fileDescriptor_a0b84a42fa06f626, []int{5}
 }
 
 func (m *AddContactResponse) XXX_Unmarshal(b []byte) error {
@@ -221,7 +338,7 @@ func (m *AddContactsResponse) Reset()         { *m = AddContactsResponse{} }
 func (m *AddContactsResponse) String() string { return proto.CompactTextString(m) }
 func (*AddContactsResponse) ProtoMessage()    {}
 func (*AddContactsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a0b84a42fa06f626, []int{4}
+	return fileDescriptor_a0b84a42fa06f626, []int{6}
 }
 
 func (m *AddContactsResponse) XXX_Unmarshal(b []byte) error {
@@ -260,7 +377,7 @@ func (m *DeleteContactRequest) Reset()         { *m = DeleteContactRequest{} }
 func (m *DeleteContactRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteContactRequest) ProtoMessage()    {}
 func (*DeleteContactRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a0b84a42fa06f626, []int{5}
+	return fileDescriptor_a0b84a42fa06f626, []int{7}
 }
 
 func (m *DeleteContactRequest) XXX_Unmarshal(b []byte) error {
@@ -299,7 +416,7 @@ func (m *DeleteContactResponse) Reset()         { *m = DeleteContactResponse{} }
 func (m *DeleteContactResponse) String() string { return proto.CompactTextString(m) }
 func (*DeleteContactResponse) ProtoMessage()    {}
 func (*DeleteContactResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a0b84a42fa06f626, []int{6}
+	return fileDescriptor_a0b84a42fa06f626, []int{8}
 }
 
 func (m *DeleteContactResponse) XXX_Unmarshal(b []byte) error {
@@ -328,6 +445,9 @@ func (m *DeleteContactResponse) GetId() int32 {
 }
 
 func init() {
+	proto.RegisterType((*ListContactsRequest)(nil), "phonebook.ListContactsRequest")
+	proto.RegisterType((*ListContactsResponse)(nil), "phonebook.ListContactsResponse")
+	proto.RegisterType((*ListContactsResponse_SingleContact)(nil), "phonebook.ListContactsResponse.SingleContact")
 	proto.RegisterType((*GetContactRequest)(nil), "phonebook.GetContactRequest")
 	proto.RegisterType((*GetContactResponse)(nil), "phonebook.GetContactResponse")
 	proto.RegisterType((*AddContactRequest)(nil), "phonebook.AddContactRequest")
@@ -340,26 +460,30 @@ func init() {
 func init() { proto.RegisterFile("service.proto", fileDescriptor_a0b84a42fa06f626) }
 
 var fileDescriptor_a0b84a42fa06f626 = []byte{
-	// 294 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x92, 0xcd, 0x4a, 0xfb, 0x40,
-	0x14, 0xc5, 0x9b, 0xe4, 0xdf, 0x3f, 0xf4, 0x96, 0x16, 0x7b, 0x55, 0x08, 0xc5, 0x8f, 0x30, 0x82,
-	0xcd, 0x2a, 0x0b, 0x7d, 0x02, 0xb5, 0x20, 0x55, 0xb0, 0x10, 0x5c, 0xb9, 0x6b, 0x3a, 0x17, 0x0c,
-	0xda, 0x4c, 0xcc, 0x4c, 0x05, 0xdf, 0xd2, 0x47, 0x12, 0x47, 0xc9, 0x4c, 0xbe, 0x28, 0xb8, 0x1b,
-	0x72, 0x4e, 0x7e, 0x73, 0xee, 0xb9, 0x03, 0x23, 0x49, 0xc5, 0x7b, 0xba, 0xa6, 0x28, 0x2f, 0x84,
-	0x12, 0x38, 0xc8, 0x9f, 0x45, 0x46, 0x89, 0x10, 0x2f, 0xec, 0x0c, 0x26, 0xb7, 0xa4, 0x6e, 0x44,
-	0xa6, 0x56, 0x6b, 0x15, 0xd3, 0xdb, 0x96, 0xa4, 0xc2, 0x31, 0xb8, 0x29, 0xf7, 0x9d, 0xc0, 0x09,
-	0xfb, 0xb1, 0x9b, 0x72, 0x76, 0x07, 0x68, 0x9b, 0x64, 0x2e, 0x32, 0x49, 0x88, 0xf0, 0x2f, 0x5b,
-	0x6d, 0x48, 0xfb, 0x06, 0xb1, 0x3e, 0x63, 0x00, 0x43, 0xcd, 0x7e, 0xd8, 0x6e, 0x12, 0x2a, 0x7c,
-	0x57, 0x4b, 0xf6, 0x27, 0xb6, 0x80, 0xc9, 0x15, 0xe7, 0xb5, 0x0b, 0xff, 0x86, 0x7a, 0x02, 0xb4,
-	0x51, 0xbf, 0xb1, 0x6a, 0xe1, 0x4b, 0xb6, 0xdb, 0xcd, 0xf6, 0x9a, 0xec, 0x19, 0xec, 0x1b, 0xb6,
-	0x2c, 0xe1, 0x7b, 0xe0, 0xa5, 0x5c, 0xfa, 0x4e, 0xe0, 0x85, 0xfd, 0xf8, 0xfb, 0xc8, 0xce, 0xe1,
-	0x60, 0x4e, 0xaf, 0xa4, 0x68, 0x47, 0x87, 0x33, 0x38, 0xac, 0xf9, 0xda, 0xf3, 0x5e, 0x7c, 0xba,
-	0x60, 0xf6, 0x83, 0x4b, 0x18, 0x9b, 0xea, 0xaf, 0x3f, 0x16, 0x73, 0x3c, 0x8a, 0x4a, 0x35, 0x6a,
-	0xac, 0x6e, 0x7a, 0xdc, 0xa1, 0xfe, 0x5c, 0xc6, 0x7a, 0x78, 0x0f, 0x60, 0x06, 0xab, 0xc0, 0x1a,
-	0x6b, 0xa9, 0xc0, 0x9a, 0x4d, 0xb3, 0x1e, 0x3e, 0xc2, 0xa8, 0x32, 0x14, 0x9e, 0x5a, 0x7f, 0xb4,
-	0xd5, 0x32, 0x0d, 0xba, 0x0d, 0x25, 0x75, 0x09, 0x43, 0xab, 0xfb, 0x1d, 0x19, 0x4f, 0x5a, 0x55,
-	0x69, 0x70, 0xa1, 0x93, 0xfc, 0xd7, 0xcf, 0xfe, 0xf2, 0x2b, 0x00, 0x00, 0xff, 0xff, 0x8b, 0xde,
-	0x39, 0xbe, 0x07, 0x03, 0x00, 0x00,
+	// 357 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x94, 0xcd, 0x4e, 0xc2, 0x40,
+	0x10, 0xc7, 0x69, 0x2b, 0x46, 0x06, 0x21, 0x32, 0x40, 0x42, 0x1a, 0xc5, 0x66, 0x4d, 0x84, 0x8b,
+	0x3d, 0xe0, 0x13, 0xa8, 0x18, 0x83, 0x1a, 0x8d, 0xd5, 0x93, 0x37, 0xa0, 0x13, 0x6d, 0x84, 0x2e,
+	0xd2, 0xc5, 0xc4, 0xe7, 0xf1, 0xe2, 0x63, 0x1a, 0xd7, 0xda, 0x6e, 0x69, 0x9b, 0x26, 0xdc, 0x36,
+	0xf3, 0xf1, 0x9b, 0x8f, 0xff, 0x64, 0xa1, 0x16, 0xd0, 0xf2, 0xc3, 0x9b, 0x92, 0xbd, 0x58, 0x72,
+	0xc1, 0xb1, 0xb2, 0x78, 0xe5, 0x3e, 0x4d, 0x38, 0x7f, 0x63, 0x6d, 0x68, 0xde, 0x7a, 0x81, 0xb8,
+	0xe0, 0xbe, 0x18, 0x4f, 0x45, 0xe0, 0xd0, 0xfb, 0x8a, 0x02, 0xc1, 0xbe, 0x35, 0x68, 0x25, 0xed,
+	0xc1, 0x82, 0xfb, 0x01, 0xe1, 0x08, 0x76, 0xa6, 0xa1, 0xad, 0xa3, 0x59, 0x46, 0xbf, 0x3a, 0x38,
+	0xb1, 0x23, 0x9a, 0x9d, 0x95, 0x62, 0x3f, 0x7a, 0xfe, 0xcb, 0x8c, 0x42, 0xb3, 0x13, 0xa5, 0x9b,
+	0x97, 0x50, 0x4b, 0xb8, 0x10, 0x61, 0xcb, 0x1f, 0xcf, 0xa9, 0xa3, 0x59, 0x5a, 0xbf, 0xe2, 0xc8,
+	0x37, 0x5a, 0x50, 0x95, 0xf8, 0xbb, 0xd5, 0x7c, 0x42, 0xcb, 0x8e, 0x2e, 0x5d, 0xaa, 0x89, 0x1d,
+	0x41, 0xe3, 0x8a, 0xfe, 0xab, 0x86, 0xfd, 0x63, 0x1d, 0x74, 0xcf, 0x95, 0xa0, 0xb2, 0xa3, 0x7b,
+	0x2e, 0xbb, 0x06, 0x54, 0x83, 0xc2, 0x61, 0x36, 0x2b, 0x38, 0x82, 0xc6, 0x99, 0xeb, 0xae, 0x15,
+	0xdc, 0x0c, 0xf5, 0x0c, 0xa8, 0xa2, 0xc2, 0xb6, 0xd6, 0x9a, 0x8f, 0xd8, 0x7a, 0x3e, 0xdb, 0x48,
+	0xb3, 0x7b, 0xd0, 0x8c, 0xd9, 0xb1, 0x80, 0x7b, 0x60, 0x78, 0xee, 0x9f, 0x76, 0x65, 0xe7, 0xf7,
+	0xc9, 0x8e, 0xa1, 0x35, 0xa4, 0x19, 0x09, 0x2a, 0xd8, 0x61, 0x0f, 0xda, 0x6b, 0x71, 0xd9, 0xfd,
+	0x0e, 0xbe, 0x0c, 0x88, 0x2f, 0x0c, 0x1f, 0x60, 0x57, 0x3d, 0x0b, 0xec, 0xe6, 0xde, 0x8b, 0x2c,
+	0x6b, 0x1e, 0x16, 0xdc, 0x13, 0x2b, 0xe1, 0x3d, 0xd4, 0x63, 0x35, 0xcf, 0x3f, 0x47, 0x43, 0xdc,
+	0x57, 0x92, 0x52, 0xd7, 0x60, 0x1e, 0xe4, 0x78, 0x23, 0xe0, 0x0d, 0x40, 0xbc, 0xab, 0x04, 0x2c,
+	0xa5, 0x74, 0x02, 0x96, 0x16, 0x8f, 0x95, 0xf0, 0x09, 0x6a, 0x89, 0x3d, 0xa1, 0x3a, 0x51, 0xd6,
+	0xa6, 0x4d, 0x2b, 0x3f, 0x40, 0x99, 0xb9, 0xaa, 0xc8, 0x59, 0xd0, 0x63, 0x37, 0xd3, 0xab, 0xac,
+	0xb0, 0xaf, 0x4d, 0xb6, 0xe5, 0x5f, 0x70, 0xfa, 0x13, 0x00, 0x00, 0xff, 0xff, 0x93, 0x7e, 0x52,
+	0x2a, 0x1c, 0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -374,6 +498,7 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type PhonebookClient interface {
+	ListContacts(ctx context.Context, in *ListContactsRequest, opts ...grpc.CallOption) (*ListContactsResponse, error)
 	GetContactByID(ctx context.Context, in *GetContactRequest, opts ...grpc.CallOption) (*GetContactResponse, error)
 	AddContact(ctx context.Context, in *AddContactRequest, opts ...grpc.CallOption) (*AddContactResponse, error)
 	DeleteContact(ctx context.Context, in *DeleteContactRequest, opts ...grpc.CallOption) (*DeleteContactResponse, error)
@@ -386,6 +511,15 @@ type phonebookClient struct {
 
 func NewPhonebookClient(cc *grpc.ClientConn) PhonebookClient {
 	return &phonebookClient{cc}
+}
+
+func (c *phonebookClient) ListContacts(ctx context.Context, in *ListContactsRequest, opts ...grpc.CallOption) (*ListContactsResponse, error) {
+	out := new(ListContactsResponse)
+	err := c.cc.Invoke(ctx, "/phonebook.phonebook/ListContacts", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *phonebookClient) GetContactByID(ctx context.Context, in *GetContactRequest, opts ...grpc.CallOption) (*GetContactResponse, error) {
@@ -451,6 +585,7 @@ func (x *phonebookAddContactsClient) CloseAndRecv() (*AddContactsResponse, error
 
 // PhonebookServer is the server API for Phonebook service.
 type PhonebookServer interface {
+	ListContacts(context.Context, *ListContactsRequest) (*ListContactsResponse, error)
 	GetContactByID(context.Context, *GetContactRequest) (*GetContactResponse, error)
 	AddContact(context.Context, *AddContactRequest) (*AddContactResponse, error)
 	DeleteContact(context.Context, *DeleteContactRequest) (*DeleteContactResponse, error)
@@ -459,6 +594,24 @@ type PhonebookServer interface {
 
 func RegisterPhonebookServer(s *grpc.Server, srv PhonebookServer) {
 	s.RegisterService(&_Phonebook_serviceDesc, srv)
+}
+
+func _Phonebook_ListContacts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListContactsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PhonebookServer).ListContacts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/phonebook.phonebook/ListContacts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PhonebookServer).ListContacts(ctx, req.(*ListContactsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Phonebook_GetContactByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -545,6 +698,10 @@ var _Phonebook_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "phonebook.phonebook",
 	HandlerType: (*PhonebookServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "ListContacts",
+			Handler:    _Phonebook_ListContacts_Handler,
+		},
 		{
 			MethodName: "GetContactByID",
 			Handler:    _Phonebook_GetContactByID_Handler,

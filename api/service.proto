@@ -1,10 +1,20 @@
 syntax = "proto3";
 package phonebook;
 service phonebook {
+  rpc ListContacts(ListContactsRequest) returns (ListContactsResponse) {}
   rpc GetContactByID(GetContactRequest) returns (GetContactResponse) {}
   rpc AddContact(AddContactRequest) returns (AddContactResponse) {}
   rpc DeleteContact(DeleteContactRequest) returns (DeleteContactResponse) {}
   rpc AddContacts(stream AddContactRequest) returns ( AddContactsResponse) {}
+}
+
+message ListContactsRequest{}
+message ListContactsResponse{
+  message SingleContact {
+    string name = 1;
+    string phoneNumber = 2;
+  }
+  repeated SingleContact contacts = 1;
 }
 
 message GetContactRequest {
