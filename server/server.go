@@ -55,7 +55,7 @@ func (s *Server) ListContacts(ctx context.Context, id *api.ListContactsRequest) 
 	}
 	apiContacts := make([]*api.ListContactsResponse_SingleContact, len(contacts))
 	for i, contact := range contacts {
-		apiContacts[i] = &api.ListContactsResponse_SingleContact{Name: contact.name, PhoneNumber: contact.phoneNumber}
+		apiContacts[i] = &api.ListContactsResponse_SingleContact{Name: contact.name, PhoneNumber: contact.phoneNumber, Id: contact.id}
 	}
 	return &api.ListContactsResponse{Contacts: apiContacts}, nil
 }
@@ -77,19 +77,16 @@ func (s *Server) DeleteContact(ctx context.Context, id *api.DeleteContactRequest
 }
 
 func (s *Server) AddContacts(stream api.Phonebook_AddContactsServer) error {
-	ids := make([]int32, 0)
+	//ids := make([]int32, 0)
 	for {
 		contact, err := stream.Recv()
 		if err == io.EOF {
-			stream.SendAndClose(&api.AddContactsResponse{Ids: ids})
-			return nil
+			return stream.SendAndClose(&api.AddContactsResponse{})
 		}
 		if err != nil {
 			return err
 		}
 		newContact := &Contact{name: contact.Name, phoneNumber: contact.PhoneNumber}
-		id := s.phonebook.AddContact(newContact)
-		ids = append(ids, id)
-		fmt.Printf("New Contact: %+v\n", newContact)
+		s.phonebook.AddContact(newContact)
 	}
 }

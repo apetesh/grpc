@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"os"
 	"os/signal"
 )
@@ -8,7 +9,14 @@ import (
 func main() {
 	pb := NewPhonebook()
 	s := NewServer(pb, 8000)
-	go s.Start()
+	go func(){
+		err := s.Start()
+		if err != nil {
+			log.Fatal(err)
+			os.Exit(1)
+		}
+	}()
+	log.Printf("listening on port 8000")
 	stopChan := make(chan os.Signal, 0)
 	signal.Notify(stopChan, os.Kill, os.Interrupt)
 	<-stopChan

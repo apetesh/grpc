@@ -1,0 +1,6 @@
+syntax = "proto3";
+package phonebook;
+
+message Test{
+  string s = 1;
+}

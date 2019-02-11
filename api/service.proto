@@ -11,8 +11,9 @@ service phonebook {
 message ListContactsRequest{}
 message ListContactsResponse{
   message SingleContact {
-    string name = 1;
-    string phoneNumber = 2;
+    int32 id = 1;
+    string name = 2;
+    string phoneNumber = 3;
   }
   repeated SingleContact contacts = 1;
 }
