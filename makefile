@@ -10,6 +10,5 @@ run_server:
 build_client:
 	go build -o client/client ./client
 
-build_client:
+run_client:
 	go build -o client/client ./client && client/client
-
