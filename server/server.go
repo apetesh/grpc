@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"context"
@@ -22,8 +22,8 @@ type Server struct {
 	grpcServer *grpc.Server
 }
 
-func NewServer(phonebook *Phonebook, port int) *Server {
-	return &Server{phonebook, port, grpc.NewServer()}
+func NewServer(port int) *Server {
+	return &Server{NewPhonebook(), port, grpc.NewServer()}
 }
 
 func (s *Server) Stop() {
